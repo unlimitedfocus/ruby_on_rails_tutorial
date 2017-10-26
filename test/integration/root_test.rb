@@ -1,9 +1,11 @@
 require 'test_helper'
 
 class RootTest < ActionDispatch::IntegrationTest
-  test "can see the welcome page" do
+  test "can not see the welcome page without login" do
     get '/'
-    assert_select "h1", "Hello!"
+    assert_response :redirect
+    follow_redirect!
     assert_response :success
+    assert_select "h2", "Log in"
   end
 end
