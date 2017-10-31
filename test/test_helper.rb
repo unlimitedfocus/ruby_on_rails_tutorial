@@ -2,6 +2,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 require 'capybara/minitest'
+require 'minitest/reporters'
+Minitest::Reporters.use!
+require 'simplecov'
+SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
 class ActiveSupport::TestCase
   include Capybara::DSL
