@@ -8,4 +8,14 @@ class RootTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h2", "Log in"
   end
+
+  test "should logged in when login success" do
+    visit '/'
+
+    user = users(:one)
+    fill_in "Email", with: user.email
+    fill_in "Password", with: 'password'
+    click_button "Log in"
+    page.has_content? 'Hello!'
+  end
 end
